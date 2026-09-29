@@ -1,0 +1,6 @@
+{
+  "name": "OmniRetail Intelligence Suite",
+  "description": "Suite SaaS B2B de inteligencia de retail cosmético, catálogo maestro con caché VTEX, márgenes y analítica de rotación con IA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

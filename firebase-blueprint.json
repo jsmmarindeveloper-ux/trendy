@@ -1,0 +1,242 @@
+{
+  "entities": {
+    "SuperAdminConfig": {
+      "title": "SuperAdminConfig",
+      "description": "Configuración global de Super Administradores de la plataforma OmniRetail.",
+      "type": "object",
+      "properties": {
+        "super_admin_uid": {
+          "type": "string",
+          "description": "UID de Firebase Auth del Super Administrador principal."
+        },
+        "super_admin_email": {
+          "type": "string",
+          "description": "Correo electrónico del Super Administrador."
+        },
+        "created_at": {
+          "type": "string",
+          "description": "Marca de tiempo ISO de creación o inicialización."
+        }
+      },
+      "required": ["super_admin_uid", "super_admin_email"]
+    },
+    "CompetitorProductCache": {
+      "title": "CompetitorProductCache",
+      "description": "Catálogo Maestro Global con Caché Compartido & TTL de 24h para productos consultados a VTEX.",
+      "type": "object",
+      "properties": {
+        "referencia": {
+          "type": "string",
+          "description": "SKU o referencia normalizada en mayúsculas (ej. DY2075)."
+        },
+        "nombre": {
+          "type": "string",
+          "description": "Nombre oficial del producto según VTEX."
+        },
+        "descripcion": {
+          "type": "string",
+          "description": "Descripción limpia en texto plano."
+        },
+        "imagen_url": {
+          "type": "string",
+          "description": "URL de la imagen del producto en alta resolución."
+        },
+        "precio_competidor": {
+          "type": "number",
+          "description": "Precio comercial del competidor en COP."
+        },
+        "url_competidor": {
+          "type": "string",
+          "description": "Enlace directo al producto del competidor."
+        },
+        "disponible": {
+          "type": "boolean",
+          "description": "Disponibilidad de stock en el competidor."
+        },
+        "ultima_sync": {
+          "type": "string",
+          "description": "Timestamp de la última sincronización exitosa."
+        },
+        "sync_lock_until": {
+          "type": "string",
+          "description": "Timestamp de expiración del candado de sincronización de 30 segundos."
+        }
+      },
+      "required": ["referencia", "nombre", "precio_competidor"]
+    },
+    "Tenant": {
+      "title": "Tenant",
+      "description": "Organización o empresa de retail/cosméticos registrada en el SaaS.",
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string",
+          "description": "Nombre comercial de la empresa."
+        },
+        "slug": {
+          "type": "string",
+          "description": "Identificador de URL único (ej. glow-beauty)."
+        },
+        "activo": {
+          "type": "boolean",
+          "description": "Estado activo o suspendido de la empresa."
+        },
+        "plan": {
+          "type": "string",
+          "enum": ["free", "pro", "enterprise"],
+          "description": "Plan de suscripción de la tienda."
+        },
+        "creado_en": {
+          "type": "string",
+          "description": "Fecha de registro del tenant."
+        },
+        "config": {
+          "type": "object",
+          "description": "Ajustes de tienda, márgenes y catálogo digital."
+        }
+      },
+      "required": ["nombre", "slug", "activo", "plan"]
+    },
+    "TenantUsuario": {
+      "title": "TenantUsuario",
+      "description": "Membresía y permisos de un usuario dentro de un Tenant.",
+      "type": "object",
+      "properties": {
+        "tenant_id": {
+          "type": "string",
+          "description": "ID del tenant asociado."
+        },
+        "uid": {
+          "type": "string",
+          "description": "UID de Firebase Auth."
+        },
+        "email": {
+          "type": "string",
+          "description": "Correo del usuario."
+        },
+        "nombre": {
+          "type": "string",
+          "description": "Nombre para mostrar."
+        },
+        "rol": {
+          "type": "string",
+          "enum": ["admin", "editor"],
+          "description": "Rol de acceso del usuario dentro del tenant."
+        },
+        "activo": {
+          "type": "boolean",
+          "description": "Si la membresía está activa."
+        },
+        "creado_en": {
+          "type": "string",
+          "description": "Fecha de asignación."
+        }
+      },
+      "required": ["tenant_id", "uid", "email", "rol", "activo"]
+    },
+    "TenantUsuarioPendiente": {
+      "title": "TenantUsuarioPendiente",
+      "description": "Invitaciones pendientes de ingreso vinculadas a un email.",
+      "type": "object",
+      "properties": {
+        "tenant_id": {
+          "type": "string",
+          "description": "ID del tenant al que se le invita."
+        },
+        "rol": {
+          "type": "string",
+          "enum": ["admin", "editor"],
+          "description": "Rol asignado para cuando inicie sesión."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email invitado."
+        }
+      },
+      "required": ["tenant_id", "rol", "email"]
+    },
+    "Producto": {
+      "title": "Producto",
+      "description": "Producto de inventario del tenant con costos, márgenes y vinculación a caché competidor.",
+      "type": "object",
+      "properties": {
+        "tenant_id": {
+          "type": "string",
+          "description": "ID del tenant propietario."
+        },
+        "referencia_competidor": {
+          "type": "string",
+          "description": "SKU o referencia vinculada a competitor_products_cache."
+        },
+        "nombre_personalizado": {
+          "type": "string",
+          "description": "Nombre de venta en la tienda del tenant."
+        },
+        "slug": {
+          "type": "string",
+          "description": "Slug para URL del catálogo público."
+        },
+        "precio_compra": {
+          "type": "number",
+          "description": "Costo de adquisición en Pesos Colombianos COP."
+        },
+        "precio_venta": {
+          "type": "number",
+          "description": "Precio de venta al público en COP."
+        },
+        "stock": {
+          "type": "number",
+          "description": "Cantidad de unidades en bodega/tienda."
+        },
+        "categoria": {
+          "type": "string",
+          "description": "Categoría cosmética (ej. Labios, Rostro, Skincare)."
+        },
+        "notas": {
+          "type": "string",
+          "description": "Anotaciones comerciales o de proveedor."
+        },
+        "visible_catalogo": {
+          "type": "boolean",
+          "description": "Publicar en el catálogo web público de la marca."
+        },
+        "analisis_ia": {
+          "type": "string",
+          "description": "Resumen de tendencias y recomendación de Gemini AI."
+        },
+        "rotacion_ia": {
+          "type": "string",
+          "enum": ["alta", "media", "baja"],
+          "description": "Clasificación de rotación generada por IA."
+        }
+      },
+      "required": ["tenant_id", "referencia_competidor", "nombre_personalizado", "precio_compra", "precio_venta"]
+    }
+  },
+  "firestore": {
+    "/superadmin/{docId}": {
+      "schema": "SuperAdminConfig",
+      "description": "Configuración de credenciales de superadmin."
+    },
+    "/competitor_products_cache/{sku}": {
+      "schema": "CompetitorProductCache",
+      "description": "Caché global maestro de productos consultados a VTEX."
+    },
+    "/tenants/{tenantId}": {
+      "schema": "Tenant",
+      "description": "Organizaciones y tiendas registradas."
+    },
+    "/tenant_usuarios/{membershipId}": {
+      "schema": "TenantUsuario",
+      "description": "Membresías de usuarios por tenant ({tenantId}_{uid})."
+    },
+    "/tenant_usuarios_pendientes/{email}": {
+      "schema": "TenantUsuarioPendiente",
+      "description": "Invitaciones pendientes para futuros usuarios."
+    },
+    "/productos/{docId}": {
+      "schema": "Producto",
+      "description": "Inventario de productos por tenant ({tenantId}_{productoId})."
+    }
+  }
+}

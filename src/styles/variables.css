@@ -1,0 +1,87 @@
+:root {
+  /* 🌸 Paleta Primaria: Beauty Chic */
+  --color-primary: #E8829A;
+  --color-primary-dark: #C4607A;
+  --color-primary-light: #FCEEF2;
+
+  /* ✨ Acentos de Lujo: Oro & Champaña */
+  --color-gold: #D4AF37;
+  --color-gold-light: #FDF6DC;
+  --color-gold-dark: #A8861B;
+
+  /* 🏛️ Superficies & Fondos */
+  --color-bg: #FFF9FB;
+  --color-surface: #FFFFFF;
+  --color-surface-subtle: #FAF0F4;
+  --color-border: #F2D6DF;
+
+  /* 🖋️ Tipografía & Contrastes */
+  --color-text-main: #2A1820;
+  --color-text-muted: #8E6B77;
+  --color-text-light: #BF9FA9;
+
+  /* 🚦 Semáforo de Decisión Comercial */
+  --color-status-ok: #27AE60;
+  --color-status-ok-bg: #EAFBF2;
+  --color-status-warn: #E67E22;
+  --color-status-warn-bg: #FEF6EC;
+  --color-status-danger: #D63031;
+  --color-status-danger-bg: #FDEDEC;
+
+  /* 📐 Geometría & Elevación */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --shadow-soft: 0 4px 20px rgba(232, 130, 154, 0.12);
+  --shadow-elevated: 0 10px 30px rgba(232, 130, 154, 0.20);
+
+  /* 🔤 Fuentes */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+}
+
+h1, h2, h3, .font-serif-luxury {
+  font-family: var(--font-heading);
+}
+
+.luxury-glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+}
+
+.luxury-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
+  border-radius: var(--radius-md);
+  transition: all 0.25s ease;
+}
+
+.luxury-card:hover {
+  box-shadow: var(--shadow-elevated);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #A8861B 0%, #D4AF37 50%, #F5D77F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.chic-gradient-btn {
+  background: linear-gradient(135deg, #E8829A 0%, #C4607A 100%);
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.chic-gradient-btn:hover {
+  background: linear-gradient(135deg, #C4607A 0%, #A34860 100%);
+  box-shadow: 0 4px 14px rgba(232, 130, 154, 0.4);
+}
